@@ -1,3 +1,9 @@
+import { Sidebar } from "./components/Sidebar";
+
 export const App = () => {
-  return <div>Hello, World!</div>;
+  return (
+    <div>
+      <Sidebar />
+    </div>
+  );
 };
