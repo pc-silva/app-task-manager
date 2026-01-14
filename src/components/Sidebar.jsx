@@ -15,11 +15,11 @@ export const Sidebar = () => {
         </p>
       </div>
       <div className="flex flex-col gap-2 p-2">
-        <SidebarButton variant={"ghost"}>
+        <SidebarButton variant={"unselected"}>
           <HomeIcon />
           Início
         </SidebarButton>
-        <SidebarButton variant={"primary"}>
+        <SidebarButton variant={"selected"}>
           <TasksIcon />
           Minhas Tarefas
         </SidebarButton>
