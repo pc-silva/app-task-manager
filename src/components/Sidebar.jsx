@@ -1,4 +1,6 @@
 import { SidebarButton } from "./SidebarButton";
+import HomeIcon from "../assets/icons/home.svg?react";
+import TasksIcon from "../assets/icons/tasks.svg?react";
 
 export const Sidebar = () => {
   return (
@@ -13,8 +15,14 @@ export const Sidebar = () => {
         </p>
       </div>
       <div className="flex flex-col gap-2 p-2">
-        <SidebarButton variant={"ghost"}>Início</SidebarButton>
-        <SidebarButton variant={"primary"}>Minhas Tarefas</SidebarButton>
+        <SidebarButton variant={"ghost"}>
+          <HomeIcon />
+          Início
+        </SidebarButton>
+        <SidebarButton variant={"primary"}>
+          <TasksIcon />
+          Minhas Tarefas
+        </SidebarButton>
       </div>
     </div>
   );

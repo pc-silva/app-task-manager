@@ -11,7 +11,7 @@ export const SidebarButton = ({ children, variant }) => {
   return (
     <a
       href="#"
-      className={`font-nunito rounded-[10px] px-6 py-3 text-sm font-semibold ${getVariantClass()}`}
+      className={`font-nunito flex items-center gap-2 rounded-[10px] px-6 py-3 text-sm font-semibold ${getVariantClass()}`}
     >
       {children}
     </a>
