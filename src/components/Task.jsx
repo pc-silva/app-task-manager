@@ -16,6 +16,20 @@ export const Task = () => {
   const afternoonTasks = tasks.filter((task) => task.time === "afternoon");
   const eveningTasks = tasks.filter((task) => task.time === "evening");
 
+  function handleStatusChange(taskId) {
+    const updatedTasks = tasks.map((task) => {
+      if (task.id !== taskId) return task;
+
+      if (task.status === "done") return { ...task, status: "not_started" };
+      if (task.status === "not_started")
+        return { ...task, status: "in_progress" };
+      if (task.status === "in_progress") return { ...task, status: "done" };
+
+      return task;
+    });
+    setTasks(updatedTasks);
+  }
+
   return (
     <div className="w-full px-8.5 pt-17.5 text-xs font-semibold">
       <div className="flex items-end justify-between">
@@ -38,7 +52,11 @@ export const Task = () => {
           <TaskSeparator title="Manhã" icon={<SunIcon />} />
           {/* Manhã */}
           {morningTasks.map((task) => (
-            <TaskItens key={task.id} task={task} />
+            <TaskItens
+              key={task.id}
+              task={task}
+              handleStatusChange={handleStatusChange}
+            />
           ))}
         </div>
 
@@ -46,7 +64,11 @@ export const Task = () => {
           <TaskSeparator title="Tarde" icon={<CloudSunIcon />} />
           {/* Tarde */}
           {afternoonTasks.map((task) => (
-            <TaskItens key={task.id} task={task} />
+            <TaskItens
+              key={task.id}
+              task={task}
+              handleStatusChange={handleStatusChange}
+            />
           ))}
         </div>
 
@@ -54,7 +76,11 @@ export const Task = () => {
           <TaskSeparator title="Noite" icon={<MoonIcon />} />
           {/* Noite */}
           {eveningTasks.map((task) => (
-            <TaskItens key={task.id} task={task} />
+            <TaskItens
+              key={task.id}
+              task={task}
+              handleStatusChange={handleStatusChange}
+            />
           ))}
         </div>
       </div>

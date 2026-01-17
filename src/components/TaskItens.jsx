@@ -4,7 +4,7 @@ import LoaderIcon from "../assets/icons/loader.svg?react";
 import TrashIcon from "../assets/icons/trash.svg?react";
 import { Button } from "./Button";
 
-export const TaskItens = ({ task }) => {
+export const TaskItens = ({ task, handleStatusChange }) => {
   function getStatusColor() {
     switch (task.status) {
       case "done":
@@ -32,11 +32,12 @@ export const TaskItens = ({ task }) => {
     >
       <div className="flex items-center gap-3">
         <label
-          className={`relative flex h-6 w-6 items-center justify-center ${getStatusColorLabel()} rounded-md`}
+          className={`relative flex h-6 w-6 cursor-pointer items-center justify-center ${getStatusColorLabel()} rounded-md`}
         >
           <input
             type="checkbox"
             checked={task.status === "done"}
+            onChange={() => handleStatusChange(task.id)}
             className="absolute h-full w-full cursor-pointer opacity-0"
           />
           {task.status === "done" && <CheckIcon />}
