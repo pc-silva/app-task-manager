@@ -4,7 +4,7 @@ import LoaderIcon from "../assets/icons/loader.svg?react";
 import TrashIcon from "../assets/icons/trash.svg?react";
 import { Button } from "./Button";
 
-export const TaskItens = ({ task, handleStatusChange }) => {
+export const TaskItens = ({ task, handleStatusChange, handleDeleteTask }) => {
   function getStatusColor() {
     switch (task.status) {
       case "done":
@@ -48,7 +48,7 @@ export const TaskItens = ({ task, handleStatusChange }) => {
         {task.title}
       </div>
       <div className="flex items-center gap-2">
-        <Button variant={"ghost"}>
+        <Button variant={"ghost"} onClick={() => handleDeleteTask(task.id)}>
           <TrashIcon />
         </Button>
         <a href="#">

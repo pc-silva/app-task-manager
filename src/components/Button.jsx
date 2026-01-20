@@ -1,4 +1,4 @@
-export const Button = ({ children, variant }) => {
+export const Button = ({ children, variant, ...rest }) => {
   function getVariantButton() {
     if (variant === "primary") {
       return "bg-[#00ADB5] px-3 py-1 text-white";
@@ -9,6 +9,7 @@ export const Button = ({ children, variant }) => {
   return (
     <button
       className={`flex cursor-pointer gap-1 rounded-[5px] transition-opacity hover:opacity-75 ${getVariantButton()}`}
+      {...rest}
     >
       {children}
     </button>

@@ -8,6 +8,7 @@ import { TaskSeparator } from "./TaskSeparator";
 import { useState } from "react";
 import { TASKS } from "./constants/TASKS";
 import { TaskItens } from "./TaskItens";
+import { toast } from "sonner";
 
 export const Task = () => {
   const [tasks, setTasks] = useState(TASKS);
@@ -20,13 +21,29 @@ export const Task = () => {
     const updatedTasks = tasks.map((task) => {
       if (task.id !== taskId) return task;
 
-      if (task.status === "done") return { ...task, status: "not_started" };
-      if (task.status === "not_started")
+      if (task.status === "done") {
+        toast.success("Tarefa marcada como não iniciada!");
+        return { ...task, status: "not_started" };
+      }
+
+      if (task.status === "not_started") {
+        toast.success("Tarefa em progresso!");
         return { ...task, status: "in_progress" };
-      if (task.status === "in_progress") return { ...task, status: "done" };
+      }
+
+      if (task.status === "in_progress") {
+        toast.success("Tarefa concluída!");
+        return { ...task, status: "done" };
+      }
 
       return task;
     });
+    setTasks(updatedTasks);
+  }
+
+  function handleDeleteTask(taskId) {
+    const updatedTasks = tasks.filter((task) => task.id !== taskId);
+    toast.success("Tarefa deletada com sucesso!");
     setTasks(updatedTasks);
   }
 
@@ -56,6 +73,7 @@ export const Task = () => {
               key={task.id}
               task={task}
               handleStatusChange={handleStatusChange}
+              handleDeleteTask={handleDeleteTask}
             />
           ))}
         </div>
@@ -68,6 +86,7 @@ export const Task = () => {
               key={task.id}
               task={task}
               handleStatusChange={handleStatusChange}
+              handleDeleteTask={handleDeleteTask}
             />
           ))}
         </div>
@@ -80,6 +99,7 @@ export const Task = () => {
               key={task.id}
               task={task}
               handleStatusChange={handleStatusChange}
+              handleDeleteTask={handleDeleteTask}
             />
           ))}
         </div>
