@@ -1,14 +1,16 @@
-import { Button } from "./Button";
-import AddIcon from "../assets/icons/add.svg?react";
-import TrashIcon from "../assets/icons/trash.svg?react";
-import SunIcon from "../assets/icons/sun.svg?react";
-import MoonIcon from "../assets/icons/moon.svg?react";
-import CloudSunIcon from "../assets/icons/cloudSun.svg?react";
-import { TaskSeparator } from "./TaskSeparator";
 import { useState } from "react";
+import { toast } from "sonner";
+
+import AddIcon from "../assets/icons/add.svg?react";
+import CloudSunIcon from "../assets/icons/cloudSun.svg?react";
+import MoonIcon from "../assets/icons/moon.svg?react";
+import SunIcon from "../assets/icons/sun.svg?react";
+import TrashIcon from "../assets/icons/trash.svg?react";
+import { AddTaskDialog } from "./AddTaskDialog";
+import { Button } from "./Button";
 import { TASKS } from "./constants/TASKS";
 import { TaskItens } from "./TaskItens";
-import { toast } from "sonner";
+import { TaskSeparator } from "./TaskSeparator";
 
 export const Task = () => {
   const [tasks, setTasks] = useState(TASKS);
@@ -61,6 +63,7 @@ export const Task = () => {
           <Button variant="primary">
             Nova tarefa <AddIcon />
           </Button>
+          <AddTaskDialog isOpen={true} />
         </div>
       </div>
 
