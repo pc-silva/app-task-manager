@@ -58,7 +58,7 @@ export const Task = () => {
           <h1 className="mt-1.5 text-xl text-[#35383E]">Minhas Tarefas</h1>
         </div>
         <div className="flex gap-2">
-          <Button variant="secondary">
+          <Button variant="ghost">
             Limpar tarefas <TrashIcon />
           </Button>
           <Button onClick={() => setAddTaskDialogIsOpen(true)}>
@@ -74,7 +74,6 @@ export const Task = () => {
       <div className="mt-6 rounded-[2.5px] bg-white p-6">
         <div className="space-y-3">
           <TaskSeparator title="Manhã" icon={<SunIcon />} />
-          {/* Manhã */}
           {morningTasks.map((task) => (
             <TaskItens
               key={task.id}
@@ -87,7 +86,6 @@ export const Task = () => {
 
         <div className="my-6 space-y-3">
           <TaskSeparator title="Tarde" icon={<CloudSunIcon />} />
-          {/* Tarde */}
           {afternoonTasks.map((task) => (
             <TaskItens
               key={task.id}
@@ -100,7 +98,6 @@ export const Task = () => {
 
         <div className="space-y-3">
           <TaskSeparator title="Noite" icon={<MoonIcon />} />
-          {/* Noite */}
           {eveningTasks.map((task) => (
             <TaskItens
               key={task.id}

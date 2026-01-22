@@ -12,7 +12,9 @@ export const Button = ({
     if (variant === "secondary") {
       return "bg-[#EEEEEE] text-[#35383E]";
     }
-    return "bg-transparent px-3 py-1 text-[#818181]";
+    if (variant === "ghost") {
+      return "bg-transparent px-3 py-1 text-[#818181]";
+    }
   }
 
   function getSizeButton() {
