@@ -61,10 +61,7 @@ export const Task = () => {
           <Button variant="secondary">
             Limpar tarefas <TrashIcon />
           </Button>
-          <Button
-            variant="primary"
-            onClick={() => setAddTaskDialogIsOpen(true)}
-          >
+          <Button onClick={() => setAddTaskDialogIsOpen(true)}>
             Nova tarefa <AddIcon />
           </Button>
           <AddTaskDialog isOpen={addTaskDialogIsOpen} />
