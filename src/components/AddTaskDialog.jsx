@@ -1,9 +1,9 @@
 import { createPortal } from "react-dom";
 
-import { Input } from "./Inputs";
 import { Button } from "./Button";
+import { Input } from "./Inputs";
 
-export const AddTaskDialog = ({ isOpen }) => {
+export const AddTaskDialog = ({ isOpen, handleClose }) => {
   if (!isOpen) return null;
 
   return createPortal(
@@ -18,7 +18,12 @@ export const AddTaskDialog = ({ isOpen }) => {
           <Input label={"Horário"} placeholder="Selecione" />
           <Input label={"Descrição"} placeholder="Descreva a tarefa" />
           <div className="flex justify-between gap-2">
-            <Button size="medium" variant="secondary" className="w-full">
+            <Button
+              onClick={handleClose}
+              size="medium"
+              variant="secondary"
+              className="w-full"
+            >
               Cancelar
             </Button>
             <Button size="medium" className="w-full">
