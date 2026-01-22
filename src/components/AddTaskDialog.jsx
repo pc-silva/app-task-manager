@@ -18,8 +18,12 @@ export const AddTaskDialog = ({ isOpen }) => {
           <Input label={"Horário"} placeholder="Selecione" />
           <Input label={"Descrição"} placeholder="Descreva a tarefa" />
           <div className="flex justify-between gap-2">
-            <Button className="w-full">Cancelar</Button>
-            <Button className="w-full">Salvar</Button>
+            <Button size="medium" variant="secondary" className="w-full">
+              Cancelar
+            </Button>
+            <Button size="medium" className="w-full">
+              Salvar
+            </Button>
           </div>
         </div>
       </div>
