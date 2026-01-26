@@ -6,6 +6,7 @@ import { CSSTransition } from "react-transition-group";
 
 import { Button } from "./Button";
 import { Input } from "./Inputs";
+import { TimeSelect } from "./TimeSelect";
 
 export const AddTaskDialog = ({ isOpen, handleClose }) => {
   const nodeRef = useRef(null);
@@ -35,7 +36,7 @@ export const AddTaskDialog = ({ isOpen, handleClose }) => {
               </div>
               <div className="flex flex-col gap-4">
                 <Input label={"Título"} placeholder="Título da tarefa" />
-                <Input label={"Horário"} placeholder="Selecione" />
+                <TimeSelect />
                 <Input label={"Descrição"} placeholder="Descreva a tarefa" />
                 <div className="flex justify-between gap-2">
                   <Button
