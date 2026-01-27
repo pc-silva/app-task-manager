@@ -13,23 +13,53 @@ export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [time, setTime] = useState("morning");
+  const [errors, setErrors] = useState([]);
 
   const nodeRef = useRef(null);
 
   function handleSaveClick() {
-    if (!title.trim() || !description.trim() || !time.trim()) {
-      alert("Por favor, preencha todos os campos.");
+    const newErrors = [];
+
+    if (!title.trim()) {
+      newErrors.push({
+        inputName: "title",
+        message: "O título é obrigatório.",
+      });
+    }
+    if (!description.trim()) {
+      newErrors.push({
+        inputName: "description",
+        message: "A descrição é obrigatória.",
+      });
+    }
+    if (!time.trim()) {
+      newErrors.push({
+        inputName: "time",
+        message: "O horário é obrigatório.",
+      });
+    }
+
+    if (newErrors.length > 0) {
+      setErrors(newErrors);
       return;
     }
+
     handleSubmit({ id: v4(), title, description, time, status: "not_started" });
     handleClose();
     handleCleanInput();
   }
 
+  const titleError = errors.find((error) => error.inputName === "title");
+  const descriptionError = errors.find(
+    (error) => error.inputName === "description",
+  );
+  const timeError = errors.find((error) => error.inputName === "time");
+
   function handleCleanInput() {
     setTitle("");
     setDescription("");
     setTime("morning");
+    setErrors([]);
   }
 
   return (
@@ -61,17 +91,23 @@ export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
                   placeholder="Título da tarefa"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
+                  error={titleError?.message}
                 />
+
                 <TimeSelect
                   value={time}
                   onChange={(e) => setTime(e.target.value)}
+                  error={timeError?.message}
                 />
+
                 <Input
                   label={"Descrição"}
                   placeholder="Descreva a tarefa"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
+                  error={descriptionError?.message}
                 />
+
                 <div className="flex justify-between gap-2">
                   <Button
                     onClick={() => {

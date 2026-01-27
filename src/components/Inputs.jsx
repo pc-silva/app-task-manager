@@ -1,6 +1,6 @@
 import { InputLabel } from "./InputLabel";
 
-export const Input = ({ label, ...rest }) => {
+export const Input = ({ label, error, ...rest }) => {
   return (
     <div className="flex flex-col gap-1 text-left">
       <InputLabel htmlFor={rest.id}>{label}</InputLabel>
@@ -9,6 +9,7 @@ export const Input = ({ label, ...rest }) => {
         type="text"
         {...rest}
       />
+      {error && <span className="text-left text-xs text-red-500">{error}</span>}
     </div>
   );
 };
