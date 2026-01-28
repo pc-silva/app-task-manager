@@ -10,15 +10,19 @@ import { Input } from "./Inputs";
 import { TimeSelect } from "./TimeSelect";
 
 export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [time, setTime] = useState("morning");
   const [errors, setErrors] = useState([]);
 
   const nodeRef = useRef(null);
+  const titleRef = useRef();
+  const descriptionRef = useRef();
+  const timeRef = useRef();
 
   function handleSaveClick() {
     const newErrors = [];
+
+    const title = titleRef.current.value;
+    const description = descriptionRef.current.value;
+    const time = timeRef.current.value;
 
     if (!title.trim()) {
       newErrors.push({
@@ -56,9 +60,6 @@ export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
   const timeError = errors.find((error) => error.inputName === "time");
 
   function handleCleanInput() {
-    setTitle("");
-    setDescription("");
-    setTime("morning");
     setErrors([]);
   }
 
@@ -89,23 +90,17 @@ export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
                 <Input
                   label={"Título"}
                   placeholder="Título da tarefa"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
                   error={titleError?.message}
+                  ref={titleRef}
                 />
 
-                <TimeSelect
-                  value={time}
-                  onChange={(e) => setTime(e.target.value)}
-                  error={timeError?.message}
-                />
+                <TimeSelect error={timeError?.message} ref={timeRef} />
 
                 <Input
                   label={"Descrição"}
                   placeholder="Descreva a tarefa"
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
                   error={descriptionError?.message}
+                  ref={descriptionRef}
                 />
 
                 <div className="flex justify-between gap-2">
