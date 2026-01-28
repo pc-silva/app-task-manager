@@ -1,3 +1,4 @@
+import { InputError } from "./InputError.jsx";
 import { InputLabel } from "./InputLabel.jsx";
 
 export const TimeSelect = (props) => {
@@ -14,9 +15,7 @@ export const TimeSelect = (props) => {
         <option value="afternoon">Tarde</option>
         <option value="evening">Noite</option>
       </select>
-      {props.error && (
-        <span className="text-left text-xs text-red-500">{props.error}</span>
-      )}
+      {props.error && <InputError>{props.error}</InputError>}
     </div>
   );
 };
