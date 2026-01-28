@@ -77,12 +77,12 @@ export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
             ref={nodeRef}
             className="font-inter fixed top-0 flex h-screen w-screen items-center justify-center backdrop-blur"
           >
-            <div className="w-84 space-y-4 rounded-xl bg-white p-5 text-center shadow">
+            <div className="bg-brand-white w-84 space-y-4 rounded-xl p-5 text-center shadow">
               <div className="space-y-1">
-                <h1 className="text-xl font-semibold text-[#35383E]">
+                <h1 className="text-brand-darkBlue text-xl font-semibold">
                   Nova Tarefa
                 </h1>
-                <p className="text-sm text-[#9A9C9F]">
+                <p className="text-brand-textGray text-sm">
                   insira as informações abaixo
                 </p>
               </div>

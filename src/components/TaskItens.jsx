@@ -8,22 +8,22 @@ export const TaskItens = ({ task, handleStatusChange, handleDeleteTask }) => {
   function getStatusColor() {
     switch (task.status) {
       case "done":
-        return "bg-[#00ADB5]/10 text-[#002C2E]";
+        return "bg-brand-primary/10 text-brand-primary";
       case "in_progress":
-        return "bg-[#FFAA04]/10 text-[#FFAA04]";
+        return "bg-brand-process/10 text-brand-process";
       default:
-        return "bg-[#35383E]/5 text-[#35383E]";
+        return "bg-brand-darkBlue/5 text-brand-darkBlue";
     }
   }
 
   function getStatusColorLabel() {
     switch (task.status) {
       case "done":
-        return "bg-[#00ADB5]";
+        return "bg-brand-primary";
       case "in_progress":
-        return "bg-[#FFAA04]";
+        return "bg-brand-process";
       default:
-        return "bg-[#35383E]/20";
+        return "bg-brand-darkBlue/20";
     }
   }
   return (

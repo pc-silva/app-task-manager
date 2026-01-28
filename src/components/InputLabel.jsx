@@ -1,6 +1,9 @@
 export const InputLabel = (props) => {
   return (
-    <label className="text-sm font-semibold text-[#35383E]" htmlFor={props.id}>
+    <label
+      className="text-brand-darkBlue text-sm font-semibold"
+      htmlFor={props.id}
+    >
       {props.children}
     </label>
   );

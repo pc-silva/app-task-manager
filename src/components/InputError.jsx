@@ -1,3 +1,5 @@
 export const InputError = ({ children }) => {
-  return <span className="text-left text-xs text-red-500">{children}</span>;
+  return (
+    <span className="text-brand-danger text-left text-xs">{children}</span>
+  );
 };

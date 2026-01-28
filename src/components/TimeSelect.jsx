@@ -9,7 +9,7 @@ export const TimeSelect = (props) => {
       <select
         {...props}
         id="time"
-        className="rounded-lg border border-[#ECECEC] px-4 py-3 placeholder:text-sm placeholder:text-[#9A9C9F] focus:ring-2 focus:ring-[#00ADB5] focus:outline-none"
+        className="border-brand-lightGray placeholder:text-brand-textGray focus:ring-brand-primary rounded-lg border px-4 py-3 placeholder:text-sm focus:ring-2 focus:outline-none"
       >
         <option value="morning">Manhã</option>
         <option value="afternoon">Tarde</option>

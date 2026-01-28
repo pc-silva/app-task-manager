@@ -3,12 +3,14 @@ import { SidebarButton } from "./SidebarButton";
 
 export const Sidebar = () => {
   return (
-    <div className="h-screen w-68 bg-white">
+    <div className="bg-brand-white h-screen w-68">
       <div className="space-y-4 px-8 py-6">
-        <h1 className="text-xl font-semibold text-[#00ADB5]">Task Manager</h1>
-        <p className="w-38.75 text-xs text-[#09090B]">
+        <h1 className="text-brand-primary text-xl font-semibold">
+          Task Manager
+        </h1>
+        <p className="text-brand-darkBlue w-38.75 text-xs">
           Um simples{" "}
-          <span className="font-semibold text-[#00ADB5]">
+          <span className="text-brand-primary font-semibold">
             organizador de tarefas
           </span>
         </p>

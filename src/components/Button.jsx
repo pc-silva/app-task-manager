@@ -7,13 +7,13 @@ export const Button = ({
 }) => {
   function getVariantButton() {
     if (variant === "primary") {
-      return "bg-[#00ADB5] px-3 py-1 text-white";
+      return "bg-brand-primary px-3 py-1 text-white";
     }
     if (variant === "secondary") {
-      return "bg-[#EEEEEE] text-[#35383E]";
+      return "bg-brand-lightGray text-brand-darkBlue";
     }
     if (variant === "ghost") {
-      return "bg-transparent px-3 py-1 text-[#818181]";
+      return "bg-transparent px-3 py-1 text-brand-darkGray";
     }
   }
 

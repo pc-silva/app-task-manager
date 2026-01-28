@@ -59,8 +59,8 @@ export const Task = () => {
     <div className="w-full px-8.5 pt-17.5 text-xs font-semibold">
       <div className="flex items-end justify-between">
         <div>
-          <span className="text-[#00ADB5]">Minhas Tarefas</span>
-          <h1 className="mt-1.5 text-xl text-[#35383E]">Minhas Tarefas</h1>
+          <span className="text-brand-primary">Minhas Tarefas</span>
+          <h1 className="text-brand-darkBlue mt-1.5 text-xl">Minhas Tarefas</h1>
         </div>
         <div className="flex gap-2">
           <Button variant="ghost">
@@ -77,7 +77,7 @@ export const Task = () => {
         </div>
       </div>
 
-      <div className="mt-6 rounded-[2.5px] bg-white p-6">
+      <div className="bg-brand-white mt-6 rounded-[2.5px] p-6">
         <div className="space-y-3">
           <TaskSeparator title="Manhã" icon={<SunIcon />} />
           {morningTasks.map((task) => (
