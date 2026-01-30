@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import { InputError } from "./InputError.jsx";
 import { InputLabel } from "./InputLabel.jsx";
 
@@ -18,4 +20,8 @@ export const TimeSelect = (props) => {
       {props.error && <InputError>{props.error}</InputError>}
     </div>
   );
+};
+
+TimeSelect.propTypes = {
+  error: PropTypes.string,
 };
