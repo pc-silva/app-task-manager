@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 export const TaskSeparator = ({ title, icon }) => {
   return (
     <div className="border-brand-lightGray text-brand-textGray flex gap-1.5 border-b border-solid pb-1.25 text-sm font-semibold">
@@ -5,4 +7,9 @@ export const TaskSeparator = ({ title, icon }) => {
       {title}
     </div>
   );
+};
+
+TaskSeparator.propTypes = {
+  title: PropTypes.string.isRequired,
+  icon: PropTypes.node.isRequired,
 };
