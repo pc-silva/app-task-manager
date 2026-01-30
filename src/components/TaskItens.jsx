@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import CheckIcon from "../assets/icons/check.svg?react";
 import DetailsIcon from "../assets/icons/details.svg?react";
 import LoaderIcon from "../assets/icons/loader.svg?react";
@@ -57,4 +59,15 @@ export const TaskItens = ({ task, handleStatusChange, handleDeleteTask }) => {
       </div>
     </div>
   );
+};
+
+TaskItens.propTypes = {
+  task: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    time: PropTypes.oneOf(["morning", "afternoon", "evening"]).isRequired,
+    status: PropTypes.oneOf(["not_started", "in_progress", "done"]).isRequired,
+  }).isRequired,
+  handleStatusChange: PropTypes.func.isRequired,
+  handleDeleteTask: PropTypes.func.isRequired,
 };
