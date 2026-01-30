@@ -109,14 +109,14 @@ export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
                       handleClose();
                       handleCleanInput();
                     }}
-                    size="medium"
-                    variant="secondary"
+                    size="large"
+                    color="secondary"
                     className="w-full"
                   >
                     Cancelar
                   </Button>
                   <Button
-                    size="medium"
+                    size="large"
                     className="w-full"
                     onClick={handleSaveClick}
                   >

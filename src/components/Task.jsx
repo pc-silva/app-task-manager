@@ -63,7 +63,7 @@ export const Task = () => {
           <h1 className="text-brand-darkBlue mt-1.5 text-xl">Minhas Tarefas</h1>
         </div>
         <div className="flex gap-2">
-          <Button variant="ghost">
+          <Button color="ghost">
             Limpar tarefas <TrashIcon />
           </Button>
           <Button onClick={() => setAddTaskDialogIsOpen(true)}>
