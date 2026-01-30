@@ -1,5 +1,5 @@
-import { tv } from "tailwind-variants";
 import PropTypes from "prop-types";
+import { tv } from "tailwind-variants";
 
 export const Button = ({
   children,
