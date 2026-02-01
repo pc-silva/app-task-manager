@@ -8,7 +8,6 @@ import SunIcon from "../assets/icons/sun.svg?react";
 import TrashIcon from "../assets/icons/trash.svg?react";
 import { AddTaskDialog } from "./AddTaskDialog";
 import { Button } from "./Button";
-import { TASKS } from "./constants/TASKS";
 import { TaskItens } from "./TaskItens";
 import { TaskSeparator } from "./TaskSeparator";
 
@@ -55,13 +54,26 @@ export const Task = () => {
     setTasks(updatedTasks);
   }
 
-  function handleDeleteTask(taskId) {
+  async function handleDeleteTask(taskId) {
+    const response = await fetch(`http://localhost:3000/tasks/${taskId}`, {
+      method: "DELETE",
+    });
+    if (!response.ok) {
+      return toast.error("Erro ao deletar tarefa! Tente novamente.");
+    }
     const updatedTasks = tasks.filter((task) => task.id !== taskId);
-    toast.success("Tarefa deletada com sucesso!");
     setTasks(updatedTasks);
+    toast.success("Tarefa deletada com sucesso!");
   }
 
-  function handleTaskSubmit(newTask) {
+  async function handleTaskSubmit(newTask) {
+    const response = await fetch("http://localhost:3000/tasks", {
+      method: "POST",
+      body: JSON.stringify(newTask),
+    });
+    if (!response.ok) {
+      return toast.error("Erro ao adicionar tarefa! Tente novamente.");
+    }
     setTasks([...tasks, newTask]);
     toast.success("Tarefa adicionada com sucesso!");
   }

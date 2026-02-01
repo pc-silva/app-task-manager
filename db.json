@@ -1,49 +1,23 @@
 {
   "tasks": [
     {
-      "id": 1,
-      "title": "Comprar mantimentos",
-      "description": "Comprar pão, leite e ovos",
+      "id": "ca6463be-8668-4315-92f8-29a2accc6441",
+      "title": "Caminhada",
+      "description": "5 Km",
       "time": "morning",
-      "status": "done"
-    },
-
-    {
-      "id": 2,
-      "title": "Reunião com a equipe",
-      "description": "Discutir o progresso do projeto",
-      "time": "morning",
-      "status": "done"
-    },
-
-    {
-      "id": 3,
-      "title": "Exercício físico",
-      "description": "Caminhada de 30 minutos no parque",
-      "time": "afternoon",
-      "status": "in_progress"
-    },
-
-    {
-      "id": 4,
-      "title": "Ler um livro",
-      "description": "Ler pelo menos 50 páginas do livro atual",
-      "time": "afternoon",
-      "status": "in_progress"
-    },
-
-    {
-      "id": 5,
-      "title": "Preparar jantar",
-      "description": "Cozinhar uma refeição saudável para a família",
-      "time": "evening",
       "status": "not_started"
     },
-
     {
-      "id": 6,
-      "title": "Responder e-mails",
-      "description": "Verificar e responder e-mails importantes",
+      "id": "ab6d9330-eed9-473b-8a4f-e06130828c95",
+      "title": "Capoeira",
+      "description": "Treinar armada",
+      "time": "afternoon",
+      "status": "not_started"
+    },
+    {
+      "id": "f6e18ccc-2582-4d2e-9f94-879b02bdea5b",
+      "title": "Cinema",
+      "description": "Filme Avatar",
       "time": "evening",
       "status": "not_started"
     }

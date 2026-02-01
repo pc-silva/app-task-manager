@@ -63,7 +63,7 @@ export const TaskItens = ({ task, handleStatusChange, handleDeleteTask }) => {
 
 TaskItens.propTypes = {
   task: PropTypes.shape({
-    id: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     time: PropTypes.oneOf(["morning", "afternoon", "evening"]).isRequired,
     status: PropTypes.oneOf(["not_started", "in_progress", "done"]).isRequired,
