@@ -55,12 +55,6 @@ export const Task = () => {
   }
 
   async function handleDeleteTask(taskId) {
-    const response = await fetch(`http://localhost:3000/tasks/${taskId}`, {
-      method: "DELETE",
-    });
-    if (!response.ok) {
-      return toast.error("Erro ao deletar tarefa! Tente novamente.");
-    }
     const updatedTasks = tasks.filter((task) => task.id !== taskId);
     setTasks(updatedTasks);
     toast.success("Tarefa deletada com sucesso!");
@@ -108,7 +102,7 @@ export const Task = () => {
               key={task.id}
               task={task}
               handleStatusChange={handleStatusChange}
-              handleDeleteTask={handleDeleteTask}
+              onDeleteTask={handleDeleteTask}
             />
           ))}
         </div>
@@ -120,7 +114,7 @@ export const Task = () => {
               key={task.id}
               task={task}
               handleStatusChange={handleStatusChange}
-              handleDeleteTask={handleDeleteTask}
+              onDeleteTask={handleDeleteTask}
             />
           ))}
         </div>
@@ -132,7 +126,7 @@ export const Task = () => {
               key={task.id}
               task={task}
               handleStatusChange={handleStatusChange}
-              handleDeleteTask={handleDeleteTask}
+              onDeleteTask={handleDeleteTask}
             />
           ))}
         </div>

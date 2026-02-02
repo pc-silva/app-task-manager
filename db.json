@@ -13,13 +13,6 @@
       "description": "Treinar armada",
       "time": "afternoon",
       "status": "not_started"
-    },
-    {
-      "id": "f6e18ccc-2582-4d2e-9f94-879b02bdea5b",
-      "title": "Cinema",
-      "description": "Filme Avatar",
-      "time": "evening",
-      "status": "not_started"
     }
   ]
 }
