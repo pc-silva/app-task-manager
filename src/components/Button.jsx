@@ -20,11 +20,17 @@ export const Button = ({
         large: "text-sm px-3 py-2 font-semibold",
         small: "text-xs px-3 py-1 font-semibold",
       },
+      disabled: {
+        true: "opacity-50 cursor-not-allowed hover:opacity-50",
+      },
     },
   });
 
   return (
-    <button className={button({ color, size, className })} {...rest}>
+    <button
+      className={button({ color, size, disabled: rest.disabled, className })}
+      {...rest}
+    >
       {children}
     </button>
   );

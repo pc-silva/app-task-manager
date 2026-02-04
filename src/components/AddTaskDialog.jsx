@@ -4,21 +4,25 @@ import PropTypes from "prop-types";
 import { useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { CSSTransition } from "react-transition-group";
+import { toast } from "sonner";
 import { v4 } from "uuid";
 
+import { LoaderIcon } from "../assets/icons/index";
 import { Button } from "./Button";
 import { Input } from "./Inputs";
 import { TimeSelect } from "./TimeSelect";
 
-export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
+export const AddTaskDialog = ({ isOpen, handleClose, onSubmitSuccess }) => {
   const [errors, setErrors] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const nodeRef = useRef(null);
   const titleRef = useRef();
   const descriptionRef = useRef();
   const timeRef = useRef();
 
-  function handleSaveClick() {
+  async function handleSaveClick() {
+    setIsLoading(true);
     const newErrors = [];
 
     const title = titleRef.current.value;
@@ -30,26 +34,39 @@ export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
         inputName: "title",
         message: "O título é obrigatório.",
       });
+      setIsLoading(false);
     }
     if (!description.trim()) {
       newErrors.push({
         inputName: "description",
         message: "A descrição é obrigatória.",
       });
+      setIsLoading(false);
     }
     if (!time.trim()) {
       newErrors.push({
         inputName: "time",
         message: "O horário é obrigatório.",
       });
+      setIsLoading(false);
     }
 
     if (newErrors.length > 0) {
+      setIsLoading(false);
       setErrors(newErrors);
       return;
     }
+    const task = { id: v4(), title, description, time, status: "not_started" };
+    const response = await fetch("http://localhost:3000/tasks", {
+      method: "POST",
+      body: JSON.stringify(task),
+    });
+    if (!response.ok) {
+      return toast.error("Erro ao adicionar tarefa, tente novamente!");
+    }
 
-    handleSubmit({ id: v4(), title, description, time, status: "not_started" });
+    setIsLoading(false);
+    onSubmitSuccess(task);
     handleClose();
     handleCleanInput();
   }
@@ -62,6 +79,7 @@ export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
 
   function handleCleanInput() {
     setErrors([]);
+    setIsLoading(false);
   }
 
   return (
@@ -93,15 +111,21 @@ export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
                   placeholder="Título da tarefa"
                   error={titleError?.message}
                   ref={titleRef}
+                  disabled={isLoading}
                 />
 
-                <TimeSelect error={timeError?.message} ref={timeRef} />
+                <TimeSelect
+                  disabled={isLoading}
+                  error={timeError?.message}
+                  ref={timeRef}
+                />
 
                 <Input
                   label={"Descrição"}
                   placeholder="Descreva a tarefa"
                   error={descriptionError?.message}
                   ref={descriptionRef}
+                  disabled={isLoading}
                 />
 
                 <div className="flex justify-between gap-2">
@@ -118,10 +142,15 @@ export const AddTaskDialog = ({ isOpen, handleClose, handleSubmit }) => {
                   </Button>
                   <Button
                     size="large"
-                    className="w-full"
+                    className="flex w-full items-center"
                     onClick={handleSaveClick}
+                    disabled={isLoading}
                   >
-                    Salvar
+                    {isLoading ? (
+                      <LoaderIcon className="animate-spin" />
+                    ) : (
+                      "Salvar"
+                    )}
                   </Button>
                 </div>
               </div>
