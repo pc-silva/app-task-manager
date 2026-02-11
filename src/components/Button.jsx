@@ -14,6 +14,7 @@ export const Button = ({
       color: {
         primary: "bg-brand-primary px-3 py-1 text-white",
         secondary: "bg-brand-lightGray text-brand-darkBlue",
+        tertiary: "bg-brand-danger text-brand-white",
         ghost: "bg-transparent px-3 py-1 text-brand-darkGray",
       },
       size: {
@@ -38,7 +39,7 @@ export const Button = ({
 
 Button.propTypes = {
   children: PropTypes.node.isRequired,
-  color: PropTypes.oneOf(["primary", "secondary", "ghost"]),
+  color: PropTypes.oneOf(["primary", "secondary", "ghost", "tertiary"]),
   className: PropTypes.string,
   size: PropTypes.oneOf(["small", "large"]),
 };

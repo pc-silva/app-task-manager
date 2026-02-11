@@ -20,6 +20,13 @@
       "description": "Livro de João",
       "time": "evening",
       "status": "not_started"
+    },
+    {
+      "id": "90f8cb76-313f-42da-b3f4-1f5f30065376",
+      "title": "Caminhar",
+      "description": "5 km",
+      "time": "evening",
+      "status": "not_started"
     }
   ]
 }

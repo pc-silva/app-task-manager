@@ -7,7 +7,6 @@ import { RouterProvider } from "react-router/dom";
 
 import { App } from "./App.jsx";
 import { TaskDetailsPage } from "./pages/TaskDetailsPage.jsx";
-import { Teste } from "./pages/Teste.jsx";
 
 const router = createBrowserRouter([
   {
@@ -18,10 +17,6 @@ const router = createBrowserRouter([
     path: "/task/:taskId",
     element: <TaskDetailsPage />,
   },
-  // {
-  //   path: "/task/:taskId",
-  //   element: <Teste />,
-  // },
 ]);
 
 createRoot(document.getElementById("root")).render(
