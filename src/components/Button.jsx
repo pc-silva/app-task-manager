@@ -9,7 +9,7 @@ export const Button = ({
   ...rest
 }) => {
   const button = tv({
-    base: "font-poppins flex cursor-pointer justify-center gap-1 rounded-[5px] transition-opacity hover:opacity-75",
+    base: "font-poppins flex cursor-pointer justify-center items-center gap-1 rounded-[5px] transition-opacity hover:opacity-75",
     variants: {
       color: {
         primary: "bg-brand-primary px-3 py-1 text-white",

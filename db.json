@@ -1,31 +1,10 @@
 {
   "tasks": [
     {
-      "id": "eb3fdfe2-25fe-4961-9e9c-427cd3458d17",
-      "title": "Café da manhã",
-      "description": "Proteínas",
+      "id": "9439f31a-8405-4734-935a-9f6bbcff4e9f",
+      "title": "teste",
+      "description": "teste",
       "time": "morning",
-      "status": "not_started"
-    },
-    {
-      "id": "3e119318-f63a-4a74-9c94-64fecfdb9ded",
-      "title": "Ler Livro",
-      "description": "O hábito de ser feliz",
-      "time": "afternoon",
-      "status": "not_started"
-    },
-    {
-      "id": "b7f0a525-b308-4acf-b452-e36b32ca1815",
-      "title": "Ler a bíblia",
-      "description": "Livro de João",
-      "time": "evening",
-      "status": "not_started"
-    },
-    {
-      "id": "90f8cb76-313f-42da-b3f4-1f5f30065376",
-      "title": "Caminhar",
-      "description": "5 km",
-      "time": "evening",
       "status": "not_started"
     }
   ]
