@@ -147,7 +147,10 @@ export function TaskDetailsPage() {
               />
             </div>
           </div>
-          <div className="mt-6 flex justify-end">
+          <div className="mt-6 flex justify-end gap-2.5">
+            <Button type="button" onClick={handleClickBack} color="secondary">
+              Cancelar
+            </Button>
             <Button
               className="h-9 w-17.5"
               disabled={isSubmitting}
