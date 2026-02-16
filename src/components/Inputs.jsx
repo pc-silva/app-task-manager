@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { InputError } from "./InputError";
 import { InputLabel } from "./InputLabel";
 
-export const Input = ({ label, error, ...rest }) => {
+export const Input = ({ label, errorMessage, ...rest }) => {
   return (
     <div className="flex flex-col gap-1 text-left">
       <InputLabel htmlFor={rest.id}>{label}</InputLabel>
@@ -12,7 +12,7 @@ export const Input = ({ label, error, ...rest }) => {
         type="text"
         {...rest}
       />
-      {error && <InputError>{error}</InputError>}
+      {errorMessage && <InputError>{errorMessage}</InputError>}
     </div>
   );
 };

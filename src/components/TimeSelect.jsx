@@ -17,11 +17,11 @@ export const TimeSelect = (props) => {
         <option value="afternoon">Tarde</option>
         <option value="evening">Noite</option>
       </select>
-      {props.error && <InputError>{props.error}</InputError>}
+      {props.errormessage && <InputError>{props.errormessage}</InputError>}
     </div>
   );
 };
 
 TimeSelect.propTypes = {
-  error: PropTypes.string,
+  errormessage: PropTypes.string,
 };

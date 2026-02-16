@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router";
 import { toast } from "sonner";
 
@@ -10,13 +11,14 @@ import { TimeSelect } from "../components/TimeSelect";
 
 export function TaskDetailsPage() {
   const [tasks, setTasks] = useState();
-  const [saveIsLoading, setSaveIsLoading] = useState(false);
-  const [errors, setErrors] = useState([]);
 
   const { taskId } = useParams();
-  const titleRef = useRef();
-  const descriptionRef = useRef();
-  const timeRef = useRef();
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm();
 
   const navigate = useNavigate();
 
@@ -27,52 +29,25 @@ export function TaskDetailsPage() {
       });
       const data = await response.json();
       setTasks(data);
+      reset(data);
     }
     taskFetch();
-  }, [taskId]);
+  }, [taskId, reset]);
 
   function handleClickBack() {
+    console.log("Chamou");
+
     navigate(-1);
   }
 
-  async function handleSaveClick() {
-    setSaveIsLoading(true);
-    const newErrors = [];
-
-    const title = titleRef.current.value;
-    const description = descriptionRef.current.value;
-    const time = timeRef.current.value;
-
-    if (!title.trim()) {
-      newErrors.push({
-        inputName: "title",
-        message: "O título é obrigatório.",
-      });
-      setSaveIsLoading(false);
-    }
-    if (!description.trim()) {
-      newErrors.push({
-        inputName: "description",
-        message: "A descrição é obrigatória.",
-      });
-      setSaveIsLoading(false);
-    }
-    if (!time.trim()) {
-      newErrors.push({
-        inputName: "time",
-        message: "O horário é obrigatório.",
-      });
-      setSaveIsLoading(false);
-    }
-
-    if (newErrors.length > 0) {
-      setErrors(newErrors);
-      setSaveIsLoading(false);
-      return;
-    }
+  async function handleSaveClick(data) {
     const response = await fetch(`http://localhost:3000/tasks/${tasks.id}`, {
       method: "PATCH",
-      body: JSON.stringify({ title, time, description }),
+      body: JSON.stringify({
+        title: data.title.trim(),
+        description: data.description.trim(),
+        time: data.time,
+      }),
     });
     if (!response.ok) {
       return toast.error("Erro ao adicionar tarefa, tente novamente!");
@@ -80,17 +55,9 @@ export function TaskDetailsPage() {
 
     const newTask = await response.json();
     setTasks(newTask);
-    setSaveIsLoading(false);
-    setErrors([]);
-    handleClickBack();
     toast.success("Tarefa salva com sucesso!");
+    handleClickBack();
   }
-
-  const titleError = errors.find((error) => error.inputName === "title");
-  const descriptionError = errors.find(
-    (error) => error.inputName === "description",
-  );
-  const timeError = errors.find((error) => error.inputName === "time");
 
   async function handleDeleteTask() {
     const response = await fetch(`http://localhost:3000/tasks/${tasks.id}`, {
@@ -131,45 +98,69 @@ export function TaskDetailsPage() {
             Deletar tarefa
           </Button>
         </div>
-        <div className="bg-brand-white space-y-6 rounded-[10px] p-6 text-sm">
-          <div>
-            <Input
-              id="name"
-              label="Nome"
-              defaultValue={tasks?.title}
-              ref={titleRef}
-              error={titleError?.message}
-            />
+        <form onSubmit={handleSubmit(handleSaveClick)}>
+          <div className="bg-brand-white space-y-6 rounded-[10px] p-6 text-sm">
+            <div>
+              <Input
+                id="name"
+                label="Nome"
+                {...register("title", {
+                  required: "O título é obrigatório!",
+                  validate: (value) => {
+                    if (!value.trim()) {
+                      return "O campo nome é obrigatório!";
+                    }
+                    return true;
+                  },
+                })}
+                errorMessage={errors?.title?.message}
+              />
+            </div>
+            <div>
+              <TimeSelect
+                {...register("time", {
+                  required: "O horário é obrigatório!",
+                  validate: (value) => {
+                    if (!value.trim()) {
+                      return "O campo horário é obrigatório!";
+                    }
+                    return true;
+                  },
+                })}
+                errormessage={errors?.time?.message}
+              />
+            </div>
+            <div>
+              <Input
+                id="description"
+                label="Descrição"
+                {...register("description", {
+                  required: "A descrição é obrigatória!",
+                  validate: (value) => {
+                    if (!value.trim()) {
+                      return "O campo descrição é obrigatório!";
+                    }
+                    return true;
+                  },
+                })}
+                errorMessage={errors?.description?.message}
+              />
+            </div>
           </div>
-          <div>
-            <TimeSelect
-              defaultValue={tasks?.time}
-              ref={timeRef}
-              error={timeError?.message}
-            />
+          <div className="mt-6 flex justify-end">
+            <Button
+              className="h-9 w-17.5"
+              disabled={isSubmitting}
+              type="submit"
+            >
+              {isSubmitting ? (
+                <LoaderIcon className="animate-spin" />
+              ) : (
+                "Salvar"
+              )}
+            </Button>
           </div>
-          <div>
-            <Input
-              id="description"
-              label="Descrição"
-              defaultValue={tasks?.description}
-              ref={descriptionRef}
-              error={descriptionError?.message}
-            />
-          </div>
-        </div>
-        <div className="flex justify-end gap-2.5">
-          <Button onClick={handleClickBack} color="secondary">
-            Cancelar
-          </Button>
-          <Button
-            className="h-9 w-17.5"
-            disabled={saveIsLoading}
-            onClick={handleSaveClick}
-          >
-            {saveIsLoading ? <LoaderIcon className="animate-spin" /> : "Salvar"}
-          </Button>
-        </div>
+        </form>
       </div>
     </div>
   );
